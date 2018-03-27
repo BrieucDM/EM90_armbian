@@ -1,0 +1,18 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+
+#/boot/fan.sh &
+brcm_patchram_plus --patchram /lib/firmware/brcm/BCM40183B2.hcd --enable_hci --bd_addr 06:73:AA:BE:E7:54 --no2bytes --tosleep 1000 /dev/ttyS1
+su -c 'hciattach /dev/ttyS1 any'
+exit 0
